@@ -24,6 +24,7 @@ Additional details about the simulation
 
 Terminology
     metric: a name, value, and timestamp that represents the state of a system (for example: CPU load)
+    Ex:  <metric type="cpu" timestamp="10-Dec-2020" value="80"></metric>
     target: an entity upon which metrics are gathered (for example: a host machine).  A target is
         uniquely identified by its (name, type) tuple
             (for example: ("mydatabase", "oracle_database") or ("red.oracle.com", "host") are unique
