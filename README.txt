@@ -1,4 +1,14 @@
+To run this project: 
+1. git clone https://github.com/eosza/interview-ex.git
+2. gradle clean build
+3. gradle run
 
+---------------------------------------------------------------------------------------------------------
+To Run Tests:
+1. comment in 27-34 lines in build.gradle file
+2. Use command: ./gradlew clean build to run the tests
+
+---------------------------------------------------------------------------------------------------------
 Oracle's Enterprise Manager collects data about computing systems.  That data is stored, aggregated,
 and made available to users so they can better administer their systems.
 
@@ -51,7 +61,4 @@ project and are behind a VPN, you may need to use the offline gradle flag ("grad
 or uncomment the offline start parameter in init.gradle.
 
 
----------------------------------------------------------------------------------------------------------
-To Run Tests:
-1. comment in 27-34 lines in build.gradle file
-2. Use command: ./gradlew clean build to run the tests
+
