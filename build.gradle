@@ -23,7 +23,7 @@ dependencies {
 
 //targetCompatibility = JavaVersion.VERSION_1_8
 //sourceCompatibility = JavaVersion.VERSION_1_8
-// Comment in lines 27-34 to run tests
+// Comment in lines 27-35 to run tests
 //Run tests with: ./gradlew clean build
 // tasks.withType(Test) {
 //     useJUnitPlatform()
