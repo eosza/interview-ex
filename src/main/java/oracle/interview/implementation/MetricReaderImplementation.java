@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -26,16 +27,12 @@ import org.xml.sax.SAXException;
 public class MetricReaderImplementation implements MetricReader {
     @Override
     public List<TargetMetricsContainer> readMetrics(InputStream metricInputStream) {
-        // TODO: implement this, reading data from the input stream, returning a list of
-        // containers read from the stream
+        List<TargetMetricsContainer> listMerticsContainer = new ArrayList<TargetMetricsContainer>();
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setNamespaceAware(false);
             Document doc = dbf.newDocumentBuilder().parse(metricInputStream);
             doc.getDocumentElement().normalize();
-
-            System.out.println("Root Element :" + doc.getDocumentElement().getNodeName());
-            System.out.println("------");
 
             // get <targets>
             NodeList listTargets = doc.getElementsByTagName("target");
@@ -52,7 +49,8 @@ public class MetricReaderImplementation implements MetricReader {
                     String targetType = target.getAttribute("type");
 
                     TargetMetricsContainer container = new TargetMetricsContainer(targetName, targetType);
-                    System.out.println(targetName);
+                    // add container to collection
+                    listMerticsContainer.add(container);
 
                     // get metrics
                     NodeList metricList = target.getElementsByTagName("metric");
@@ -65,13 +63,8 @@ public class MetricReaderImplementation implements MetricReader {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                             Date parsedDate = dateFormat.parse(timestamp);
 
-
-                          
                             Instant timeInstant = parsedDate.toInstant();
 
-
-
-                            System.out.println(timeInstant.toString());
                             String value = target.getElementsByTagName("metric").item(x).getAttributes()
                                     .getNamedItem("value").getTextContent();
 
@@ -91,10 +84,8 @@ public class MetricReaderImplementation implements MetricReader {
             // exp.printStackTrace();
             System.out.println(exp);
         }
-        // Read data from an XML file
-        // parse XML
-        // List<TargetMetricsContainer>
-        return Collections.emptyList();
+
+        return listMerticsContainer;
     }
 
 }
