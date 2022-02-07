@@ -1,5 +1,7 @@
 package oracle.interview.implementation;
 
+import java.sql.SQLException;
+
 import oracle.interview.metrics.MetricStorage;
 import oracle.interview.metrics.MetricWriter;
 import oracle.interview.metrics.TargetMetricsContainer;
@@ -18,6 +20,19 @@ public class MetricWriterImplementation implements MetricWriter {
         //      storage.write(metricsContainer);
         //  partially works.  Since the write could fail, retry the write on failure
         //  as appropriate.
+        boolean bError = true;
+        do{
+            try{
+                storage.write(metricsContainer);
+                bError = false;
+            
+              }
+              catch (SQLException e) {
+                e.printStackTrace();
 
+            }
+            }while(bError);  
+
+       
     }
 }

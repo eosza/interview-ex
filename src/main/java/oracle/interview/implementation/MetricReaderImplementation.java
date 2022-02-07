@@ -4,17 +4,12 @@ import oracle.interview.metrics.MetricReader;
 import oracle.interview.metrics.TargetMetricsContainer;
 
 import java.io.InputStream;
-import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -80,9 +75,8 @@ public class MetricReaderImplementation implements MetricReader {
 
                 }
             }
-        } catch (ParserConfigurationException | IOException | SAXException exp) {
-            // exp.printStackTrace();
-            System.out.println(exp);
+        } catch (ParserConfigurationException | IOException | SAXException e) {
+            e.printStackTrace();
         }
 
         return listMerticsContainer;
