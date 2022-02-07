@@ -5,12 +5,15 @@ import oracle.interview.metrics.TargetMetricsContainer;
 
 import java.io.InputStream;
 import java.security.Timestamp;
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -49,6 +52,7 @@ public class MetricReaderImplementation implements MetricReader {
                     String targetType = target.getAttribute("type");
 
                     TargetMetricsContainer container = new TargetMetricsContainer(targetName, targetType);
+                    System.out.println(targetName);
 
                     // get metrics
                     NodeList metricList = target.getElementsByTagName("metric");
@@ -58,10 +62,15 @@ public class MetricReaderImplementation implements MetricReader {
                         String timestamp = target.getElementsByTagName("metric").item(x).getAttributes()
                                 .getNamedItem("timestamp").getTextContent();
                         try {
-                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                            Date parsedDate = (Date) dateFormat.parse(timestamp);
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+                            Date parsedDate = dateFormat.parse(timestamp);
 
+
+                          
                             Instant timeInstant = parsedDate.toInstant();
+
+
+
                             System.out.println(timeInstant.toString());
                             String value = target.getElementsByTagName("metric").item(x).getAttributes()
                                     .getNamedItem("value").getTextContent();
