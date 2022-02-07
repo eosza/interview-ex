@@ -17,7 +17,11 @@ public class Main {
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
         MetricReader reader = new MetricReaderImplementation();
-        try (FileInputStream fis = new FileInputStream(findFile("metrics_data.xml"))) {
+        String file = "metrics_data.xml";
+        if(args.length > 0){
+            file = args[0];
+        } 
+        try (FileInputStream fis = new FileInputStream(findFile(file))) {
             List<TargetMetricsContainer> metrics = reader.readMetrics(fis);
             writeAllMetrics(metrics);
         }

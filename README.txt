@@ -49,3 +49,9 @@ There is a build.gradle supplied, if you wish to use it.  To build the project, 
 Please feel free to use whichever IDE you are most familiar with.  If you do choose to use the gradle
 project and are behind a VPN, you may need to use the offline gradle flag ("gradle --offline build")
 or uncomment the offline start parameter in init.gradle.
+
+
+---------------------------------------------------------------------------------------------------------
+To Run Tests:
+1. comment in 27-34 lines in build.gradle file
+2. Use command: ./gradlew clean build to run the tests

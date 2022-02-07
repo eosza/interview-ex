@@ -23,15 +23,16 @@ dependencies {
 
 //targetCompatibility = JavaVersion.VERSION_1_8
 //sourceCompatibility = JavaVersion.VERSION_1_8
-
-tasks.withType(Test) {
-    useJUnitPlatform()
-    testLogging {
-        exceptionFormat "full"
-        events "started", "skipped", "passed", "failed"
-        showStandardStreams true
-    }
-}
+// Comment in lines 27-34 to run tests
+//Run tests with: ./gradlew clean build
+// tasks.withType(Test) {
+//     useJUnitPlatform()
+//     testLogging {
+//         exceptionFormat "full"
+//         events "started", "skipped", "passed", "failed"
+//         showStandardStreams true
+//     }
+// }
 
 // spotless {
 //   // optional: limit format enforcement to just the files changed by this feature branch

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+
+
+-->
+
+
+<metricCollection>
+    <target name="red.oracle.com" type="host">
+        <description>the red VM</description>
+        
+    </target>
+
+    <target name="blue.oracle.com" type="host">
+        <description>the blue VM</description>
+        
+    </target>
+
+    <target name="green.oracle.com" type="host">
+        <description>the green VM</description>
+        
+    </target>
+
+</metricCollection>
