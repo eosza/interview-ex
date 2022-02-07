@@ -6,7 +6,7 @@ To run this project:
 
 ---------------------------------------------------------------------------------------------------------
 To Run Tests:
-1. comment in 27-34 lines in build.gradle file
+1. comment in 27-35 lines in build.gradle file
 2. Use command: ./gradlew clean build to run the tests
 
 ---------------------------------------------------------------------------------------------------------
