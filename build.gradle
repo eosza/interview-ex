@@ -11,20 +11,26 @@ version '1.0'
 // }
 
 repositories {
-//    mavenCentral()
+   mavenCentral()
 }
 
 dependencies {
-//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0', 'org.jmockit:jmockit:1.49', 'org.hamcrest:hamcrest:2.2'
-//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testRuntime('org.junit.vintage:junit-vintage-engine:5.4.0')
+
 }
 
 //targetCompatibility = JavaVersion.VERSION_1_8
 //sourceCompatibility = JavaVersion.VERSION_1_8
 
-test {
-//    useJUnitPlatform()
-//    jvmArgs "-javaagent:${classpath.find { it.name.contains("jmockit") }.absolutePath}"
+tasks.withType(Test) {
+    useJUnitPlatform()
+    testLogging {
+        exceptionFormat "full"
+        events "started", "skipped", "passed", "failed"
+        showStandardStreams true
+    }
 }
 
 // spotless {
