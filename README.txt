@@ -1,5 +1,6 @@
 To run this project: 
 1. git clone https://github.com/eosza/interview-ex.git
+2. cd interview-ex
 2. gradle clean build
 3. gradle run
 
