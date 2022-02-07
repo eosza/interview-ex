@@ -4,6 +4,7 @@ import oracle.interview.metrics.MetricReader;
 import oracle.interview.metrics.TargetMetricsContainer;
 
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class MetricReaderImplementation implements MetricReader {
     public List<TargetMetricsContainer> readMetrics(InputStream metricInputStream) {
         List<TargetMetricsContainer> listMerticsContainer = new ArrayList<TargetMetricsContainer>();
         try {
+            // get data from input stream
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             dbf.setNamespaceAware(false);
             Document doc = dbf.newDocumentBuilder().parse(metricInputStream);
@@ -50,25 +52,26 @@ public class MetricReaderImplementation implements MetricReader {
                     // get metrics
                     NodeList metricList = target.getElementsByTagName("metric");
                     for (int x = 0; x < metricList.getLength(); x++) {
+                        // get metric attributes
                         String type = target.getElementsByTagName("metric").item(x).getAttributes().getNamedItem("type")
                                 .getTextContent();
                         String timestamp = target.getElementsByTagName("metric").item(x).getAttributes()
                                 .getNamedItem("timestamp").getTextContent();
+                        String value = target.getElementsByTagName("metric").item(x).getAttributes()
+                                .getNamedItem("value").getTextContent();
+                        // convert value to int as expected by TargetMetricsContainer class
+
+                        int valueInt = Integer.parseInt(value);
+                        // convert timestamp to instant as expected by TargetMetricsContainer class
                         try {
                             SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MMM-yyyy");
                             Date parsedDate = dateFormat.parse(timestamp);
-
                             Instant timeInstant = parsedDate.toInstant();
-
-                            String value = target.getElementsByTagName("metric").item(x).getAttributes()
-                                    .getNamedItem("value").getTextContent();
-
-                            int valueInt = Integer.parseInt(value);
 
                             container.addMetric(type, timeInstant, valueInt);
 
-                        } catch (Exception e) {
-                            System.out.println(e.toString());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
                         }
 
                     }

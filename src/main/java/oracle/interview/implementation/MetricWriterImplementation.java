@@ -16,10 +16,6 @@ public class MetricWriterImplementation implements MetricWriter {
 
     @Override
     public void writeMetricsContainer(TargetMetricsContainer metricsContainer) {
-        // TODO: write this metricsContainer to the MetricStorage. Hint
-        //      storage.write(metricsContainer);
-        //  partially works.  Since the write could fail, retry the write on failure
-        //  as appropriate.
         boolean bError = true;
         do{
             try{
